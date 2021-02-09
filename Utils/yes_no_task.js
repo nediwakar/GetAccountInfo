@@ -1,7 +1,7 @@
 // reference to function with exports.handler
 // const functions = Runtime.getFunctions();
 // let PA = require(functions['PaymentArrangement'].path);
-const eventHandler = require('../functions/getAccount_task.js');
+const eventHandler = require('../functions/greeting_task.js');
 const responseBuilder = require('./response_builder.js');
  
 const context = {};
@@ -15,9 +15,19 @@ CurrentInput: 'agent',
 CurrentTask: 'fallback',
 DialoguePayloadUrl:
 'https://autopilot.twilio.com/v1/Assistants/UAxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx1/Dialogues/UKxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx1',
- Memory: `{
+Memory: `{
+"PaymentAmt":800,
+"AgentTransfer":false,
+"InstallmentPayment":0,
+"NP":0,
+"FP":0,
+"start_date":"",
+"InstallmentStart_Date":"",
+"Frequency":"",
+"FACSFreq":"",
+"LegalAnnounce":""
+}`,
 
- }`,
 
 Field_yes_no_Value: 'No',
 Channel: 'voice',
@@ -32,4 +42,5 @@ console.log(JSON.stringify(data));
 }
  
 // call the function
-eventHandler.getAccount_task(context, event, callback,responseBuilder.RB);
+eventHandler.yes_no_task(context, event, callback,responseBuilder.RB);
+//PA.PaymentArrangement(context, event, callback);
